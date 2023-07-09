@@ -1,9 +1,16 @@
 package com.pollen.prototype;
 
-public class Rabbit implements Cloneable {
+public class Rabbit implements Prototype {
     private Person owner;
     private Breed breed;
     private int age;
+
+    public Rabbit(){}
+
+    public Rabbit(Rabbit rabbit) {
+        this.owner = rabbit.getOwner();
+        this.breed = rabbit.getBreed();
+    }
 
     public enum Breed {
         HIMALAYAN,

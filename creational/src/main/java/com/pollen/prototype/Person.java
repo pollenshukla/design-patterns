@@ -1,6 +1,6 @@
 package com.pollen.prototype;
 
-public class Person implements Cloneable {
+public class Person extends Rabbit {
     private String name;
 
     public Person(String owner) {
@@ -16,7 +16,7 @@ public class Person implements Cloneable {
     }
 
     @Override
-    protected Person clone() throws CloneNotSupportedException {
+    public Person clone() throws CloneNotSupportedException {
         try {
             return (Person) super.clone();
         } catch (CloneNotSupportedException e) {

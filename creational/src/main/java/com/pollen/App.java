@@ -1,5 +1,9 @@
 package com.pollen;
 
+import com.pollen.abstractfactory.AppLoginConfiguration;
+import com.pollen.abstractfactory.AppLoginConfigurationFactory;
+import com.pollen.abstractfactory.OsgiOauthConfiguration;
+import com.pollen.abstractfactory.OsgiSamlConfiguration;
 import com.pollen.prototype.Rabbit;
 import com.pollen.singleton.Singleton;
 
@@ -12,7 +16,20 @@ public class App
     public static void main( String[] args )
     {
         //clientSingleton();
-        clientPrototype();
+        //clientPrototype();
+        clientAbstractFactory();
+    }
+
+    private static void clientAbstractFactory() {
+        // Assume login is SAML.
+        AppLoginConfigurationFactory loginFactory = new OsgiSamlConfiguration();
+        AppLoginConfiguration loginConfiguration = loginFactory.createAppLoginConfiguration();
+        System.out.println(loginConfiguration.getLoginConfig());
+
+        // Assume login is Oauth.
+        AppLoginConfigurationFactory loginFactory2 = new OsgiOauthConfiguration();
+        AppLoginConfiguration loginConfiguration2 = loginFactory2.createAppLoginConfiguration();
+        System.out.println(loginConfiguration2.getLoginConfig());
     }
 
     private static void clientPrototype() {
